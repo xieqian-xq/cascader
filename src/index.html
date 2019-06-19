@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cascader</title>
+    <link rel="stylesheet" href="index.css" />
+    <style>
+        .container {
+            width: 700px;
+            margin: 20px auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" class="timeBox1" id="time1" readonly="readonly">
+    </div>
+    <script src="./libs/jquery-2.1.1.min.js"></script>
+    <script src="index.js"></script>
+    <script>
+        $(function () {
+            window.cc = $("#time1").cascader({
+                defaultData: [
+                    {
+                        key: "a1", value: "自定义", children: [
+                            { key: "a11", value: "有何不可" },
+                            { key: "a12", value: "清明雨上" },
+                        ]
+                    },
+                    { key: "a2", value: "寻雾启事" },
+                ],
+                defaultValue: [
+                    { key: "a1", value: "自定义" },
+                    { key: "a11", value: "有何不可" },
+                    { key: "a3", value: "苏格拉没有底" },
+                    { key: "a7", value: "寻宝游戏" }
+                ],
+                getData: function (params, cb) {
+                    console.log(params);
+                    setTimeout(function () {
+                        cb([
+                            { key: "a1", value: "自定义" },
+                            { key: "a2", value: "寻雾启事" },
+                            { key: "a3", value: "苏格拉没有底" },
+                            { key: "a4", value: "梦游计" },
+                            { key: "a5", value: "不如吃茶去" },
+                            { key: "a6", value: "青年晚报" },
+                            { key: "a7", value: "寻宝游戏" }
+                        ]);
+                    }, 100);
+                },
+                success: function (keys, values, data) {
+                    console.log(keys, values, data);
+                    $("#time1").val(values.join(" / "));
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
