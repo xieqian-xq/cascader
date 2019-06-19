@@ -20,6 +20,9 @@
     color: #606266;
     position: absolute;
     display: none;
+    animation-name: up;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
 
     * {
         margin: 0;
@@ -163,5 +166,16 @@
             font-size: 12px;
             border-radius: 3px;
         }
+    }
+}
+
+@keyframes up {
+    from {
+        transform-origin: 0 0 0;
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
     }
 }
